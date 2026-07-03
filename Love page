@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guess Who I Am ❤️</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="hearts"></div>
+
+<div class="container">
+
+<h1>Guess Who I Am? ❤️</h1>
+
+<h2>Dear Priyanshi</h2>
+
+<div class="slider">
+
+<img id="slide" src="photo1.jpg">
+
+</div>
+
+<div class="message">
+
+<p>
+
+You are the most beautiful person I've ever seen.
+
+Every time I see you,
+
+my heart smiles a little more.
+
+I don't know whether you know me,
+
+or maybe you already guessed.
+
+But one thing is true...
+
+You are special.
+
+❤️
+
+</p>
+
+</div>
+
+<button onclick="guess()">
+
+Can You Guess Who I Am?
+
+</button>
+
+<p id="answer"></p>
+
+<footer>
+
+Made with ❤️ by Someone Who Admires You
+
+</footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>LovePage/
+
+index.html
+
+style.css
+
+script.js
+
+photo1.jpg
+
+photo2.jpg
+
+photo3.jpg*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#ff1744,#b71c1c);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:white;
+}
+
+.container{
+    width:90%;
+    max-width:420px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 0 35px rgba(255,255,255,.25);
+    z-index:2;
+}
+
+h1{
+    font-family:'Great Vibes',cursive;
+    font-size:52px;
+    margin-bottom:10px;
+}
+
+h2{
+    font-size:24px;
+    margin-bottom:20px;
+}
+
+.slider{
+    width:100%;
+    height:420px;
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:20px;
+    box-shadow:0 0 20px rgba(255,255,255,.3);
+}
+
+.slider img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.8s;
+}
+
+.message{
+    font-size:17px;
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+button{
+    border:none;
+    padding:15px 35px;
+    border-radius:50px;
+    background:white;
+    color:#e91e63;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+    font-weight:bold;
+}
+
+button:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 20px white;
+}
+
+#answer{
+    margin-top:20px;
+    font-size:22px;
+    color:#fff59d;
+    font-weight:bold;
+}
+
+footer{
+    margin-top:30px;
+    opacity:.85;
+    font-size:14px;
+}
+
+/* Falling Hearts */
+
+.hearts{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:1;
+}
+
+.hearts span{
+    position:absolute;
+    display:block;
+    color:#ff80ab;
+    font-size:24px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+
+0%{
+transform:translateY(-100px) rotate(0deg);
+opacity:0;
+}
+
+20%{
+opacity:1;
+}
+
+100%{
+transform:translateY(120vh) rotate(360deg);
+opacity:0;
+}
+
+}
+
+@media(max-width:500px){
+
+.slider{
+height:340px;
+}
+
+h1{
+font-size:42px;
+}
+
+.message{
+font-size:15px;
+}
+
+button{
+font-size:16px;
+}
+
+}// Photo Slider
+
+const photos = [
+    "photo1.jpg",
+    "photo2.jpg",
+    "photo3.jpg"
+];
+
+let index = 0;
+
+const slide = document.getElementById("slide");
+
+setInterval(() => {
+    index++;
+    if (index >= photos.length) {
+        index = 0;
+    }
+    slide.src = photos[index];
+}, 3000);
+
+// Button Message
+
+function guess() {
+    document.getElementById("answer").innerHTML =
+        "❤️ Maybe one day you'll know... Until then, keep guessing. ❤️";
+}
+
+// Falling Hearts
+
+const hearts = document.querySelector(".hearts");
+
+function createHeart() {
+
+    const heart = document.createElement("span");
+
+    heart.innerHTML = "❤";
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
+
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+
+    hearts.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 10000);
+}
+
+setInterval(createHeart, 300);
